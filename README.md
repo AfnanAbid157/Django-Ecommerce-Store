@@ -25,4 +25,6 @@ Built with clean UI, responsive layout, and secure admin access.
 4. Start server: `python manage.py runserver`
 5. Access dashboard at `http://127.0.0.1:8000/`
 
+![image url](https://github.com/AfnanAbid157/Django-Ecommerce-Store/blob/adcafea8ddee3dbd687d97c8ef446e29fd911182/User_interface.jpg)
+
 
