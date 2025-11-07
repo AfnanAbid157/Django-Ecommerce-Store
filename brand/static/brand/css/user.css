@@ -1,0 +1,157 @@
+/* ---------- Base Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", "Inter", system-ui, sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+.header {
+    background: linear-gradient(135deg, #007bff, #00b4d8);
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px 30px;
+    border-bottom: 4px solid #007bff;
+}
+
+.header h1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+/* ---------- Table Container ---------- */
+.user-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    overflow-x: auto;
+}
+
+/* ---------- Table ---------- */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 16px;
+}
+
+.user-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.user-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.user-table tr:hover {
+    background-color: #f1faff;
+    transition: background 0.3s ease;
+}
+
+/* ---------- Role Badge ---------- */
+.role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    text-transform: capitalize;
+}
+
+.role-badge.staff {
+    background-color: #28a745;
+}
+
+.role-badge.user {
+    background-color: #007bff;
+}
+
+/* ---------- Responsive Table ---------- */
+@media (max-width: 768px) {
+    .user-table thead {
+        display: none;
+    }
+
+    .user-table, .user-table tbody, .user-table tr, .user-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .user-table td {
+        text-align: right;
+        padding: 12px 20px;
+        border: none;
+        position: relative;
+    }
+
+    .user-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 20px;
+        font-weight: 600;
+        color: #007bff;
+        text-transform: uppercase;
+    }
+}
+
+/* ---------- No Users Message ---------- */
+.no-users {
+    text-align: center;
+    color: #777;
+    padding: 40px;
+    font-size: 18px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}

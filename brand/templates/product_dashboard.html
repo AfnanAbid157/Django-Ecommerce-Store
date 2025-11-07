@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Management</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/product_dashboard.css' %}">
+</head>
+<body>
+
+<h2>Product Management</h2>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a> |
+<a href="{% url 'logout' %}">Logout</a>
+
+<hr>
+
+<h3>Add New Product</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="add">
+    <select name="brand" required>
+        <option value="">Select Brand</option>
+        {% for brand in brands %}
+            <option value="{{ brand.id }}">{{ brand.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="title" placeholder="Product Title" required>
+    <input type="number" step="0.01" name="price" placeholder="Price" required>
+    <input type="file" name="picture" required>
+    <button type="submit">Add Product</button>
+</form>
+
+<hr>
+
+<h3>All Products</h3>
+<table>
+    <tr>
+        <th>Picture</th>
+        <th>Title</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Actions</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <td>
+                <img src="{{ product.picture.url }}" width="50">
+                <input type="file" name="picture">
+            </td>
+            <td><input type="text" name="title" value="{{ product.title }}"></td>
+            <td>
+                <select name="brand">
+                    {% for brand in brands %}
+                        <option value="{{ brand.id }}" {% if brand.id == product.brand.id %}selected{% endif %}>{{ brand.name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type="number" step="0.01" name="price" value="{{ product.price }}"></td>
+            <td>
+                <button type="submit" name="action" value="edit">Update</button>
+                <button type="submit" name="action" value="delete" onclick="return confirm('Delete this product?')">Delete</button>
+            </td>
+        </form>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

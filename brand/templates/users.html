@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/user.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <h1>👥 Registered Users</h1>
+        <p class="subtitle">List of all users registered in the system.</p>
+    </header>
+
+    <main class="user-container">
+        {% if users %}
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Date Joined</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td data-label="ID">{{ user.id }}</td>
+                    <td data-label="Username">{{ user.username }}</td>
+                    <td data-label="Email">{{ user.email }}</td>
+                    <td data-label="Date Joined">{{ user.date_joined|date:"Y-m-d H:i" }}</td>
+                    <td data-label="Role">
+                        {% if user.is_staff %}
+                            <span class="role-badge staff">Admin</span>
+                        {% else %}
+                            <span class="role-badge user">User</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="no-users">No users found.</p>
+        {% endif %}
+    </main>
+
+    <footer class="footer">
+        <a href="{% url 'dashboard' %}" class="back-btn">← Back to Dashboard</a>
+    </footer>
+
+</body>
+</html>

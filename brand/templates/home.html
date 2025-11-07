@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Brands</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/home.css' %}">
+</head>
+<body>
+
+    <!-- === Header === -->
+    <header class="site-header">
+        <div class="header-content">
+            <h1>Our Featured Brands</h1>
+            <p>Discover top brands and explore their exclusive products.</p>
+            <div class="header-actions">
+                <a href="{% url 'cart' %}" class="btn cart-btn">🛒 View Cart</a>
+                <a href="{% url 'logout' %}" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- === Main Content === -->
+    <main class="brand-section">
+        {% if brands %}
+            <div class="brand-grid">
+                {% for brand in brands %}
+                    <div class="brand-card">
+                        <div class="brand-image">
+                            {% if brand.logo %}
+                                <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+                            {% else %}
+                                <img src="{% static 'brand/images/default-logo.png' %}" alt="No Logo">
+                            {% endif %}
+                        </div>
+                        <div class="brand-info">
+                            <h3>
+                                <a href="{% url 'brand_detail' brand.id %}">{{ brand.name }}</a>
+                            </h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-data">No brands available at the moment.</p>
+        {% endif %}
+    </main>
+
+    <!-- === Footer === -->
+    <footer class="site-footer">
+        <p>© {{ now|date:"Y" }} Brand Store — All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

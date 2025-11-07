@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/cart.css' %}">
+</head>
+<body>
+
+    <header class="cart-header">
+        <h1>🛒 Your Shopping Cart</h1>
+        <p class="subtitle">Review your items before placing your order.</p>
+    </header>
+
+    <main class="cart-container">
+        {% if cart_items %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td data-label="Product">{{ item.product.title }}</td>
+                    <td data-label="Price">${{ item.product.price }}</td>
+                    <td data-label="Quantity">{{ item.quantity }}</td>
+                    <td data-label="Total">${{ item.total_price }}</td>
+                    <td data-label="Action">
+                        <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn" onclick="return confirm('Remove this item?')">
+                                ✖ Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h3>Grand Total: <span>${{ total }}</span></h3>
+            <form method="post" action="{% url 'place_order' %}">
+                {% csrf_token %}
+                <button type="submit" class="place-order-btn" >✅ Place My Order</button>
+            </form>
+        </div>
+
+        {% else %}
+        <p class="empty-cart">🛍️ Your cart is empty.</p>
+        {% endif %}
+    </main>
+
+    <footer class="cart-footer">
+        <a href="{% url 'home' %}" class="continue-btn">← Continue Shopping</a>
+    </footer>
+
+</body>
+</html>

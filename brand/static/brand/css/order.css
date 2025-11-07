@@ -1,0 +1,141 @@
+/* ---------- General Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", "Inter", system-ui, sans-serif;
+    background-color: #f5f7fa;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: linear-gradient(135deg, #007bff, #00b4d8);
+    color: white;
+    border-bottom: 4px solid #007bff;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.header .subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ---------- Table Container ---------- */
+.orders-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+/* ---------- Orders Table ---------- */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 16px;
+}
+
+.orders-table th, 
+.orders-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.orders-table thead {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #f1faff;
+    transition: 0.2s ease;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+    .orders-table thead {
+        display: none;
+    }
+
+    .orders-table, 
+    .orders-table tbody, 
+    .orders-table tr, 
+    .orders-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .orders-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+    }
+
+    .orders-table td {
+        text-align: right;
+        padding: 12px 20px;
+        border: none;
+        position: relative;
+    }
+
+    .orders-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 600;
+        text-transform: capitalize;
+        color: #007bff;
+    }
+}
+
+/* ---------- No Orders ---------- */
+.no-orders {
+    text-align: center;
+    color: #555;
+    padding: 40px;
+    font-size: 18px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}

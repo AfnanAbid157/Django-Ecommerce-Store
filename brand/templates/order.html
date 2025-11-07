@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Orders</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/order.css' %}">
+</head>
+<body>
+    <header class="header">
+        <h1>📦 All Orders</h1>
+        <p class="subtitle">Manage and review all recent customer orders.</p>
+    </header>
+
+    <main class="orders-container">
+        {% if orders %}
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Products</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td data-label="User">{{ order.user.username }}</td>
+                    <td data-label="Products">
+                        {% for product in order.products.all %}
+                            {{ product.title }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td data-label="Total">${{ order.total_price }}</td>
+                    <td data-label="Date">{{ order.created_at|date:"d M Y, h:i A" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="no-orders">No orders found.</p>
+        {% endif %}
+    </main>
+
+    <footer class="footer">
+        <a href="{% url 'home' %}" class="back-btn">← Back to Home</a>
+    </footer>
+</body>
+</html>

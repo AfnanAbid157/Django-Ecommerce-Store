@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful | {{ user.username }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/order.css' %}">
+</head>
+<body>
+    <div class="order-success-container">
+        <div class="success-card">
+            <div class="success-icon">✅</div>
+            <h2 class="success-title">Order Placed Successfully!</h2>
+            <p class="success-message">
+                Thank you for your purchase, <strong>{{ user.username }}</strong>.<br>
+                Your order has been received and is now being processed.
+            </p>
+            <a href="{% url 'home' %}" class="btn-home">Go Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

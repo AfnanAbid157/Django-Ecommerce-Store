@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'brand/css/dashboard.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="{% url 'product_dashboard' %}">Add Product</a></li>
+            <li><a href="#">Manage Brands</a></li>
+            <li><a href="{% url 'order_list' %}">Orders</a></li>
+            <li><a href="{% url 'user_list' %}">Users</a></li>
+
+        </ul>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Welcome, Admin</h1>
+            <p>Manage your brands and products efficiently.</p>
+        </header>
+
+        <section class="card">
+            <h3>Add New Brand</h3>
+            <form method="post" enctype="multipart/form-data" class="form-grid">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+                <input type="text" name="name" placeholder="Brand Name" required>
+                <input type="text" name="title" placeholder="Title" required>
+                <input type="file" name="logo" required>
+                <textarea name="description" placeholder="Description" required></textarea>
+                <button type="submit" class="btn primary">Add Brand</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h3>Existing Brands</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for brand in brands %}
+                    <tr>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="brand_id" value="{{ brand.id }}">
+                            <td>
+                                {% if brand.logo %}
+                                    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="brand-logo">
+                                {% else %}
+                                    <span style="color: gray; font-size: 12px;">No logo</span>
+                                {% endif %}
+                                <input type="file" name="logo">
+                            </td>
+                            
+                            <td><input type="text" name="name" value="{{ brand.name }}"></td>
+                            <td><input type="text" name="title" value="{{ brand.title }}"></td>
+                            <td><textarea name="description">{{ brand.description }}</textarea></td>
+                            <td>
+                                <button type="submit" name="action" value="edit" class="btn small success">Update</button>
+                                <button type="submit" name="action" value="delete" class="btn small danger" onclick="return confirm('Delete this brand?')">Delete</button>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

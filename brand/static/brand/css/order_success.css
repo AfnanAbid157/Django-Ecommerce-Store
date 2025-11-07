@@ -1,0 +1,104 @@
+/* ---------- Base Styles ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #f3f8ff);
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ---------- Container ---------- */
+.order-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+/* ---------- Card ---------- */
+.success-card {
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+    max-width: 450px;
+}
+
+/* ---------- Icon ---------- */
+.success-icon {
+    font-size: 60px;
+    color: #28a745;
+    margin-bottom: 20px;
+    animation: bounce 1.2s ease infinite alternate;
+}
+
+/* ---------- Title ---------- */
+.success-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-bottom: 12px;
+}
+
+/* ---------- Message ---------- */
+.success-message {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* ---------- Button ---------- */
+.btn-home {
+    display: inline-block;
+    text-decoration: none;
+    background: #0b78e3;
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(11, 120, 227, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-home:hover {
+    background: #095fb6;
+    box-shadow: 0 8px 20px rgba(11, 120, 227, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .success-card {
+        padding: 30px 25px;
+        border-radius: 15px;
+    }
+    .success-title {
+        font-size: 22px;
+    }
+    .success-message {
+        font-size: 14px;
+    }
+}
